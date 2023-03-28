@@ -18,14 +18,15 @@ tools:context=".MainActivity">
         android:text="GOTO List View" />
 
     <Button
-        android:id="@+id/open_dialog"
+        android:id="@+id/goto_open_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Open Model" />
+        android:text="GOTO Open Model" />
 
-    <ListView
-        android:id="@+id/myListView"
+    <Button
+        android:id="@+id/goto_intent_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:text="GOTO Intent View Activity" />
 </LinearLayout>
 </RelativeLayout>

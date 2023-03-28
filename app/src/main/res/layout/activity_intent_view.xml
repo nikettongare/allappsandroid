@@ -4,26 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListViewActivity">
+    tools:context=".IntentViewActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <AutoCompleteTextView
-            android:id="@+id/acTF"
+        <EditText
+            android:id="@+id/usernameTF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AutoCompleteTextView" />
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Username" />
 
-        <Spinner
-            android:id="@+id/spinner"
+        <EditText
+            android:id="@+id/passwordTF"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Password" />
 
-        <ListView
-            android:id="@+id/myListView"
+        <Button
+            android:id="@+id/submitF"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:text="Submit" />
     </LinearLayout>
 </RelativeLayout>
