@@ -30,7 +30,6 @@ public class IntentViewActivity extends AppCompatActivity {
         submitFC = findViewById(R.id.submitF);
 
         submitFC.setOnClickListener(v -> {
-            passwordTFC.getText();
             Intent intent = new Intent(IntentViewActivity.this, ShowIntentViewActivity.class);
             intent.putExtra("username", usernameTFC.getText().toString());
             intent.putExtra("password",passwordTFC.getText().toString());

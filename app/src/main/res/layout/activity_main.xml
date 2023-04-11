@@ -28,5 +28,17 @@ tools:context=".MainActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="GOTO Intent View Activity" />
+
+    <Button
+        android:id="@+id/goto_webview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GOTO Webview Activity" />
+
+    <Button
+        android:id="@+id/goto_sql_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GOTO SQLite Activity" />
 </LinearLayout>
 </RelativeLayout>

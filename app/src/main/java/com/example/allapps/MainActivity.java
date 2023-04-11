@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    Button gotoIntentViewBtn, gotoOpenDialogBtn, gotoListviewBtn;
+    Button gotoIntentViewBtn, gotoOpenDialogBtn, gotoListviewBtn, gotoWebviewBtn, gotoSqlActivityBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,18 @@ public class MainActivity extends AppCompatActivity {
         gotoIntentViewBtn = findViewById(R.id.goto_intent_view);
         gotoIntentViewBtn.setOnClickListener(v -> {
             Intent myIntent = new Intent(MainActivity.this, IntentViewActivity.class);
+            startActivity(myIntent);
+        });
+
+        gotoWebviewBtn = findViewById(R.id.goto_webview);
+        gotoWebviewBtn.setOnClickListener(v -> {
+            Intent myIntent = new Intent(MainActivity.this, WebViewActivity.class);
+            startActivity(myIntent);
+        });
+
+        gotoSqlActivityBtn = findViewById(R.id.goto_sql_activity);
+        gotoSqlActivityBtn.setOnClickListener(v -> {
+            Intent myIntent = new Intent(MainActivity.this, SQLiteDatabaseActivity.class);
             startActivity(myIntent);
         });
     }

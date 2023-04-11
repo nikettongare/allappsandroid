@@ -6,36 +6,33 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.allapps.models.UserModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "BMI_CALCULATOR";
+    private static final String DATABASE_NAME = "AUTH_UTILS";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "bmi_history";
+    private static final String TABLE_NAME = "users";
 
     private static final String KEY_ID = "id";
-    private static final String KEY_HEIGHT = "height";
-    private static final String KEY_WEIGHT = "weight";
-    private static final String KEY_BMI = "bmi";
-    private static final String KEY_DATE = "date";
+    private static final String KEY_NAME = "name";
+    private static final String KEY_MOBILE = "mobile";
+
     public DatabaseHandler(Context context)
     {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
-
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME + " (" +
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                KEY_HEIGHT + " DOUBLE NOT NULL," +
-                KEY_WEIGHT + " DOUBLE NOT NULL," +
-                KEY_BMI + " DOUBLE NOT NULL," +
-                KEY_DATE + " TEXT NOT NULL" + ")";
+                KEY_NAME + " TEXT NOT NULL," +
+                KEY_MOBILE + " TEXT NOT NULL"  + ")";
         db.execSQL(createTable);
     }
-
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -44,32 +41,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Adding new record
-    public void addRecord(double height, double weight, double bmi, String date) {
+    public void addRecord(String name, String mobile) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(KEY_HEIGHT, height);
-        values.put(KEY_WEIGHT, weight);
-        values.put(KEY_BMI, bmi);
-        values.put(KEY_DATE, date);
+        values.put(KEY_NAME, name);
+        values.put(KEY_MOBILE, mobile);
 
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
 
     // Retrieve all rows from the database
-    public List<String> getAllData() {
-        List<String> data = new ArrayList<>();
+    public List<UserModel> getAllData() {
+        List<UserModel> data = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         if (cursor.moveToFirst()) {
             do {
-                data.add("ID:" + cursor.getString(0) +
-                        ", HEIGHT:" + cursor.getString(1) +
-                        ", WEIGHT:" + cursor.getString(2) +
-                        ", BMI:" + cursor.getString(3) +
-                        ", DATE:" + cursor.getString(4)
-                        );
+                data.add(new UserModel(cursor.getInt(0) , cursor.getString(1), cursor.getString(2)));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -78,11 +68,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Delete a row from the database
-    public int deleteData(String id) {
+    public void deleteData(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        int result = db.delete(TABLE_NAME, KEY_ID + "=?", new String[]{id});
+        int result = db.delete(TABLE_NAME, KEY_ID + "=?", new String[]{String.valueOf(id)});
         db.close();
-        return result;
     }
 }
 

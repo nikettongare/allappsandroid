@@ -31,7 +31,6 @@ public class ShowIntentViewActivity extends AppCompatActivity {
 
         String username = getIntent().getExtras().getString("username");
         String password = getIntent().getExtras().getString("password");
-        Log.i("TAG", "onCreate: " + username + password);
 
         usernameTFC.setText(username);
         passwordTFC.setText(password);
